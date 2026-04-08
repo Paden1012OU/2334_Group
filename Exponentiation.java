@@ -3,7 +3,7 @@ import java.math.RoundingMode;
 import java.util.Scanner;
 import java.math.BigDecimal;
 
-public class Exponentiation {
+public class Exponentiation2 {
 	
 	public static BigDecimal fastExpoIterative(BigDecimal base, BigInteger power, int rounding) throws ArithmeticException{
 
@@ -72,6 +72,7 @@ public class Exponentiation {
 	
 	
 	public static void main(String[]args) {
+		/*
 		Scanner scanner = new Scanner(System.in);		
 		
 		System.out.println("Enter the base.");
@@ -94,11 +95,35 @@ public class Exponentiation {
 		System.out.println("Rounding: " + rounding);
 		
 		//System.out.println("Result: " + fastExpoIterative(base, power, rounding).toString());
+		*/
 		
 		
 		
-		System.out.println("Result: " + fastExpoRecursive(base, power, rounding).toString());
+		for(int i = 1; i <= 30 ; i++) {
+			String b = "1";
+			for(int j = 0; j < i; j++) {
+				b = b + "0";
+			}
+			BigDecimal base = new BigDecimal(b);
+			
+			for(int k = 0; k <= 30; k++) {
+				String p = "1";
+				for(int l = 1; l <= k; l++) {
+					p = p + "0";
+				}
+				BigInteger power = new BigInteger(p);
+				
+				System.out.println("Base: " + base.toString());
+				System.out.println("power: " + power.toString());
+				
+				long s = System.currentTimeMillis();
+				//System.out.println("Result: " + fastExpoRecursive(base, power, 1).toString());
+				fastExpoRecursive(base, power, 1);
+				long e = System.currentTimeMillis();
+				
+				System.out.println("Time: " + (e - s) / 1000.0 + " seconds.");
+				System.out.println("\n");
+			}
+		}
 	}
-
-
 }
