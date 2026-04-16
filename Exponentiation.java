@@ -1,5 +1,6 @@
 import java.math.BigInteger;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.math.BigDecimal;
 
@@ -70,44 +71,17 @@ public class Exponentiation2 {
 		}		
 	}
 	
-	
-	public static void main(String[]args) {
-		/*
-		Scanner scanner = new Scanner(System.in);		
+	public static void rapidTest(String startingBase, String startingPower, int minBaseZeros, int maxBaseZeros, int minPowerZeros, int maxPowerZeros, int rounding, boolean isRecursive) {
 		
-		System.out.println("Enter the base.");
-		String b = scanner.next(); scanner.nextLine();
-		
-		System.out.println("Enter the power.");
-		String p = scanner.next(); scanner.nextLine();
-		
-		System.out.println("Enter the decimal place to be rounded (max 67108864).");
-		int rounding = scanner.nextInt();
-		
-		scanner.close();
-		
-		BigDecimal base = new BigDecimal(b);
-		BigInteger power = new BigInteger(p);
-		
-		
-		System.out.println("Base: " + b);
-		System.out.println("power: " + p);
-		System.out.println("Rounding: " + rounding);
-		
-		//System.out.println("Result: " + fastExpoIterative(base, power, rounding).toString());
-		*/
-		
-		
-		
-		for(int i = 1; i <= 30 ; i++) {
-			String b = "1";
+		for(int i = minBaseZeros; i <= maxBaseZeros ; i++) {
+			String b = startingBase;
 			for(int j = 0; j < i; j++) {
 				b = b + "0";
 			}
 			BigDecimal base = new BigDecimal(b);
 			
-			for(int k = 0; k <= 30; k++) {
-				String p = "1";
+			for(int k = minPowerZeros; k <= maxPowerZeros; k++) {
+				String p = startingPower;
 				for(int l = 1; l <= k; l++) {
 					p = p + "0";
 				}
@@ -116,14 +90,128 @@ public class Exponentiation2 {
 				System.out.println("Base: " + base.toString());
 				System.out.println("power: " + power.toString());
 				
-				long s = System.currentTimeMillis();
-				//System.out.println("Result: " + fastExpoRecursive(base, power, 1).toString());
-				fastExpoRecursive(base, power, 1);
-				long e = System.currentTimeMillis();
+				long s;
+				long e;
 				
+				if(isRecursive == true) {
+					s = System.currentTimeMillis();
+					fastExpoRecursive(base, power, 1);
+					e = System.currentTimeMillis();
+				}
+				else {
+					s = System.currentTimeMillis();
+					fastExpoIterative(base, power, 1);
+					e = System.currentTimeMillis();
+				}
 				System.out.println("Time: " + (e - s) / 1000.0 + " seconds.");
 				System.out.println("\n");
 			}
 		}
+	}
+	
+	public static void manualTest() {
+		
+		long s;
+		long e;
+		
+		BigDecimal result;
+
+		Scanner scanner = new Scanner(System.in);		
+		
+		System.out.println("Enter the decimal place for future tests be rounded (max 67108864).");
+		int rounding = scanner.nextInt();
+		
+		System.out.println("Use recursion(true) or iterative(false)? Only boolean inputs are accepted here.");
+		boolean isRecursive = scanner.nextBoolean();	
+		
+		System.out.println("Proceed with the tests? (Enter \"stop\" to stop)");
+		String confirm = scanner.next(); scanner.nextLine();
+		
+		while (!confirm.equalsIgnoreCase("stop")) {
+			
+			System.out.println("Enter the base.");
+			String b = scanner.next(); scanner.nextLine();
+				
+			System.out.println("Enter the power.");
+			String p = scanner.next(); scanner.nextLine();
+				
+			BigDecimal base = new BigDecimal(b);
+			BigInteger power = new BigInteger(p);
+				
+				
+			System.out.println("Base: " + b);
+			System.out.println("power: " + p);
+			System.out.println("Rounding: " + rounding);
+			
+			if(isRecursive == true) {
+				s = System.currentTimeMillis();
+				result = fastExpoRecursive(base, power, rounding);
+				e = System.currentTimeMillis();
+			}
+			else {
+				s = System.currentTimeMillis();
+				result = fastExpoIterative(base, power, rounding);
+				e = System.currentTimeMillis();
+			}
+			System.out.println("Result: " + result.toEngineeringString());
+			System.out.println("Time: " + (e - s) / 1000.0 + " seconds.");
+			System.out.println("\n");
+			
+			System.out.println("Proceed with the tests? (Enter \"stop\" to stop)");
+			confirm = scanner.next(); scanner.nextLine();
+		}
+
+		scanner.close();
+	}
+	
+	public static void avgSpeedTest(boolean isRecursive, String b, String p, int rounding, int iterations) {
+		
+		Long s;
+		Long e;
+		ArrayList<Long> speeds = new ArrayList<>();
+		Long spdSum = 0L;
+		
+		BigDecimal base = new BigDecimal(b);
+		BigInteger power = new BigInteger(p);
+		
+		for(int i = 0; i < iterations; i++) {
+			
+			s = System.currentTimeMillis();
+			fastExpoIterative(base, power, rounding);
+			e = System.currentTimeMillis();
+			
+			speeds.add(e-s);
+			spdSum += e-s;
+			
+			
+		}
+		
+		double avgSpd = (spdSum / 1000.0) / iterations;
+		
+		double std;
+		double diffSqrdSum = 0.0;
+		
+		for(int j = 0; j < iterations; j++) {
+			diffSqrdSum += Math.pow(speeds.get(j) / 1000.0 - avgSpd , 2);
+		}
+		
+		std = Math.sqrt(diffSqrdSum / (iterations - 1));
+		
+		
+		
+		System.out.println("average speed in seconds: " + avgSpd);
+		System.out.println("standard deviation in seconds: " + std);
+		
+		
+	}
+	
+	public static void main(String[]args) {
+		
+		//rapidTest("2", "1", 0, 10, 0, 10, 0, true);
+		
+		//manualTest();
+		
+		//avgSpeedTest(false, "2", "1000000", 1, 100);
+		
 	}
 }
