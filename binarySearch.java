@@ -70,7 +70,7 @@ public class binarySearch {
         Random rand = new Random();
 
         
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr5k,0,end,rand.nextInt(5000));
@@ -78,8 +78,9 @@ public class binarySearch {
         wr.write("5k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr5k,rand.nextInt(5000));
@@ -87,6 +88,7 @@ public class binarySearch {
         wr.write("5k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
         
         int[] arr10k=new int[10000];
         for (int i = 0; i < 10000; i++) {
@@ -95,7 +97,7 @@ public class binarySearch {
         end=(arr10k.length);
 
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr10k,0,end,rand.nextInt(10000));
@@ -103,8 +105,9 @@ public class binarySearch {
         wr.write("10k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr10k,rand.nextInt(10000));
@@ -112,6 +115,7 @@ public class binarySearch {
         wr.write("10k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
 
         int[] arr30k=new int[30000];
@@ -121,7 +125,7 @@ public class binarySearch {
         end=(arr30k.length);
 
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr30k,0,end,rand.nextInt(30000));
@@ -129,8 +133,9 @@ public class binarySearch {
         wr.write("30k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr30k,rand.nextInt(30000));
@@ -138,6 +143,7 @@ public class binarySearch {
         wr.write("30k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
 
         int[] arr50k=new int[50000];
@@ -147,7 +153,7 @@ public class binarySearch {
         end=(arr50k.length);
 
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr50k,0,end,rand.nextInt(50000));
@@ -155,8 +161,9 @@ public class binarySearch {
         wr.write("50k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr50k,rand.nextInt(50000));
@@ -164,6 +171,7 @@ public class binarySearch {
         wr.write("50k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
 
         int[] arr70k=new int[70000];
@@ -173,7 +181,7 @@ public class binarySearch {
         end=(arr70k.length);
 
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr70k,0,end,rand.nextInt(70000));
@@ -181,8 +189,9 @@ public class binarySearch {
         wr.write("70k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr70k,rand.nextInt(70000));
@@ -190,6 +199,7 @@ public class binarySearch {
         wr.write("70k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
 
         int[] arr100k=new int[100000];
@@ -199,7 +209,7 @@ public class binarySearch {
         end=(arr100k.length);
 
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         recurSearch(arr100k,0,end,rand.nextInt(100000));
@@ -207,8 +217,9 @@ public class binarySearch {
         wr.write("100k recur "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<10;i++)
         {
         startTime=System.nanoTime();
         temp.iterSearch(arr100k,rand.nextInt(100000));
@@ -216,6 +227,7 @@ public class binarySearch {
         wr.write("100k iter "+(i+1)+" "+(afTime-startTime));
         wr.newLine();
         }
+        wr.newLine();
 
         wr.close();
         }
