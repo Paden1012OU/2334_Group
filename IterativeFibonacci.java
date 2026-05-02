@@ -26,10 +26,11 @@ public class IterativeFibonacci {
 		
 		System.out.print("Enter a number to find its fibonacci value: ");
 		int num = sc.nextInt();
-		long timeStart = System.nanoTime();
-		System.out.println("Result: " + fibonacci(num));
 		
+		long timeStart = System.nanoTime();
+		BigInteger result = fibonacci(num);
 		long timeStop = System.nanoTime();
+		System.out.println("Result: " + result.toString());
 		long nanoDuration = timeStop - timeStart;
 		double millisecDuration = (timeStop - timeStart) / 1000000.0;
 		
