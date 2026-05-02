@@ -174,18 +174,30 @@ public class Exponentiation2 {
 		BigDecimal base = new BigDecimal(b);
 		BigInteger power = new BigInteger(p);
 		
-		for(int i = 0; i < iterations; i++) {
+		if (isRecursive == false) {
+			for(int i = 0; i < iterations; i++) {
 			
-			s = System.currentTimeMillis();
-			fastExpoIterative(base, power, rounding);
-			e = System.currentTimeMillis();
+				s = System.currentTimeMillis();
+				fastExpoIterative(base, power, rounding);
+				e = System.currentTimeMillis();
 			
-			speeds.add(e-s);
-			spdSum += e-s;
+				speeds.add(e-s);
+				spdSum += e-s;
 			
 			
+			}
 		}
-		
+		else {
+			for(int i = 0; i < iterations; i++) {
+				
+				s = System.currentTimeMillis();
+				fastExpoRecursive(base, power, rounding);
+				e = System.currentTimeMillis();
+			
+				speeds.add(e-s);
+				spdSum += e-s;
+			}
+		}
 		double avgSpd = (spdSum / 1000.0) / iterations;
 		
 		double std;
@@ -211,7 +223,8 @@ public class Exponentiation2 {
 		
 		//manualTest();
 		
-		//avgSpeedTest(false, "2", "1000000", 1, 100);
+		avgSpeedTest(true, "2", "100000", 1, 100000);
+		avgSpeedTest(false, "2", "100000", 1, 100000);
 		
 	}
 }
